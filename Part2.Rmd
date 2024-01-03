@@ -1,0 +1,159 @@
+---
+title: 'Part 2: Basic Inferential Data Analysis'
+author: "Olha Klishchuk"
+date: "2023-10-18"
+output: pdf_document
+---
+
+# Overview
+
+```{r}
+library(datasets)
+suppressPackageStartupMessages(library(dplyr))
+```
+
+Data\
+A data frame with 60 observations on 3 variables.
+
+[,1]	len	    numeric	 Tooth length. \
+[,2]	supp	factor	 Supplement type (vitamin C or other J). \
+[,3]	dose	numeric	 Dose in milligrams/day. 
+
+```{r}
+data(ToothGrowth)
+head(ToothGrowth)
+```
+
+# Description
+
+```{r}
+# Descriptive Statistics and EDA
+summary(ToothGrowth)
+```
+```{r}
+df<-ToothGrowth
+options(repr.plot.height = 6)
+par(mfcol = c(1,2))
+with(df, hist(len, breaks = 10, main = "Histogram of tooth length", 
+              xlab = "tooth length", ylab = "Frequency", col = "lightblue"))
+with(df, hist(dose, xlab = "dose", ylab = "Frequency", col = "lightblue"))
+```
+ __*Plot 2.*__ Distribution of data by key experimental variables
+
+So from descriptive analysis, which you can find in appendix 2.1, we find out that mean effect from vitamin C injection was 16.96 cm of teeth growth, while in other treatment we obtained - 20.66 cm. Lets test hypothesis that differences between these two treatments are significant.
+
+# Hypothesis Testing
+
+```{r}
+# Hypothesis test Ha: m2-m1>0
+# Paired test by supplement used
+t.test(df[df[['supp']]=='OJ','len'], df[df[['supp']]=='VC','len'], paired = T)$ a
+```
+
+```{r}
+#Grouping data by dosage
+dose_0.5v1<-
+df%>%
+ group_by(dose)%>%
+ mutate(dose=dose, supp = supp, len = len)%>%
+ filter(dose %in% c(.5,1))
+
+dose_0.5v2<-
+df%>%
+ group_by(dose)%>%
+ mutate(dose=dose, supp = supp, len = len)%>%
+ filter(dose != 1)
+
+dose_1v2<-
+df%>%
+ group_by(dose)%>%
+ mutate(dose=dose, supp = supp, len = len)%>%
+ filter(dose > .5)
+```
+
+```{r}
+# Hypothesis test Ha: B!=0
+# Paired test by dosage
+data_test<- 
+data.frame(statistics=c(t.test(len~dose, dose_0.5v1, paired = F)$statistic,
+           t.test(len~dose, dose_0.5v2, paired = F)$statistic,
+           t.test(len~dose, dose_1v2, paired = F)$statistic), 
+p.value = c(t.test(len~dose, dose_0.5v1, paired = F)$p.value,
+           t.test(len~dose, dose_0.5v2, paired = F)$p.value,
+           t.test(len~dose, dose_1v2, paired = F)$p.value), 
+           row.names = c('0.5v1', '0.5v2','1v2'))
+data_test
+```
+Therefore, the type of supplement is used in treatment appeared to be significant and level of efficiency is tooth growth on 3.7 cm more then on vitamin C using.
+
+```{r}
+#paired T-confidence intervals
+round(t.test(df[df[['supp']]=='OJ','len'], df[df[['supp']]=='VC','len'], paired 
+             = FALSE, conf.level = .95, var.equal = TRUE)$conf, 5)
+```
+
+# Summary
+
+
+- using other vitamins (A, D, E, alpha tocopherol) the tooth growth in guinea pigs were more significant then under solely supplementing vitamin C.
+- The mean difference in about 3.7 cm.
+- the standard deviation in observation is lower under more  diet on -1.6605
+
+
+# References
+- Crampton, E. W. (1947). The growth of the odontoblast of the incisor teeth as a criterion of vitamin C intake of the guinea pig. The Journal of Nutrition, 33(5), 491–504. doi:10.1093/jn/33.5.491.
+
+# Appendix
+
+## B 
+
+### B.1 Descriptives
+
+
+```{r}
+df<-ToothGrowth
+mean_vc<-
+    df%>%
+    group_by(supp)%>%
+    filter(supp == 'VC')%>%
+    mutate(mean_len = mean(len), mean_dose = mean(dose))%>%
+    select(-c(len, dose))
+
+sd_vc<-
+    df%>%
+    group_by(supp)%>%
+    filter(supp == 'VC')%>%
+    mutate(sd_len = sd(len), sd_dose = sd(dose))%>%
+    select(-c(len,dose))
+cat('mean: ',as.numeric(mean_vc[1,]), 'sd:', as.numeric(sd_vc[1,]))
+```
+```{r}
+
+mean_oj<-
+    df%>%
+    group_by(supp)%>%
+    filter(supp != 'VC')%>%
+    mutate(mean_len = mean(len), mean_dose = mean(dose))%>%
+    select(-c(len,dose))
+
+sd_oj<-
+    df%>%
+    group_by(supp)%>%
+    filter(supp != 'VC')%>%
+    mutate(sd_len = sd(len), sd_dose = sd(dose))%>%
+    select(-c(len,dose))
+cat('mean:', as.numeric(mean_oj[1,]), 'sd: ',  as.numeric(sd_oj[1,]))
+```
+
+### B.2 Hypothesis test 
+$H_a: B!=0$
+##### Paired test by dosage     
+
+```{r}
+t.test(len~dose, dose_0.5v1, paired = F)
+
+t.test(len~dose, dose_0.5v2, paired = F)
+
+t.test(len~dose, dose_1v2, paired = F)
+```
+

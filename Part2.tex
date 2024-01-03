@@ -1,0 +1,411 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Part 2: Basic Inferential Data Analysis},
+  pdfauthor={Olha Klishchuk},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Part 2: Basic Inferential Data Analysis}
+\author{Olha Klishchuk}
+\date{2023-10-12}
+
+\begin{document}
+\maketitle
+
+\section{Overview}\label{overview}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(datasets)}
+\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{library}\NormalTok{(dplyr))}
+\end{Highlighting}
+\end{Shaded}
+
+Data\\
+A data frame with 60 observations on 3 variables.
+
+{[},1{]} len numeric Tooth length.\\
+{[},2{]} supp factor Supplement type (vitamon C or other J).\\
+{[},3{]} dose numeric Dose in milligrams/day.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(ToothGrowth)}
+\FunctionTok{head}\NormalTok{(ToothGrowth)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    len supp dose
+## 1  4.2   VC  0.5
+## 2 11.5   VC  0.5
+## 3  7.3   VC  0.5
+## 4  5.8   VC  0.5
+## 5  6.4   VC  0.5
+## 6 10.0   VC  0.5
+\end{verbatim}
+
+\section{Description}\label{description}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Descriptive Statistics and EDA}
+\FunctionTok{summary}\NormalTok{(ToothGrowth)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       len        supp         dose      
+##  Min.   : 4.20   OJ:30   Min.   :0.500  
+##  1st Qu.:13.07   VC:30   1st Qu.:0.500  
+##  Median :19.25           Median :1.000  
+##  Mean   :18.81           Mean   :1.167  
+##  3rd Qu.:25.27           3rd Qu.:2.000  
+##  Max.   :33.90           Max.   :2.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\OtherTok{\textless{}{-}}\NormalTok{ToothGrowth}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{repr.plot.height =} \DecValTok{6}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfcol =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{with}\NormalTok{(df, }\FunctionTok{hist}\NormalTok{(len, }\AttributeTok{breaks =} \DecValTok{10}\NormalTok{, }\AttributeTok{main =} \StringTok{"Histogram of tooth length"}\NormalTok{, }
+              \AttributeTok{xlab =} \StringTok{"tooth length"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Frequency"}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{))}
+\CommentTok{\# with(df, barplot(height = table(supp), xlab = "supplement type",}
+\CommentTok{\#                  ylab = "Frequency", col = "lightblue"))}
+\FunctionTok{with}\NormalTok{(df, }\FunctionTok{hist}\NormalTok{(dose, }\AttributeTok{xlab =} \StringTok{"dose"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Frequency"}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Part2_files/figure-latex/unnamed-chunk-4-1.pdf}
+\textbf{\emph{Plot 2.}} Distribution of data by key experimental
+variables
+
+So from descriptive analysis, which you can find in appendiх 2.1, we
+find out that mean effect from vitamin C injection was 16.96 cm of teeth
+growth, while in other treatment we obtained - 20.66 cm. Lets test
+hypothesis that differences between these two treatments are
+significant.
+
+\section{Hypothesis Testing}\label{hypothesis-testing}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Hypothesis test Ha: m2{-}m1\textgreater{}0}
+\CommentTok{\# Paired test by supplement used}
+\FunctionTok{t.test}\NormalTok{(df[df[[}\StringTok{\textquotesingle{}supp\textquotesingle{}}\NormalTok{]]}\SpecialCharTok{==}\StringTok{\textquotesingle{}OJ\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}len\textquotesingle{}}\NormalTok{], df[df[[}\StringTok{\textquotesingle{}supp\textquotesingle{}}\NormalTok{]]}\SpecialCharTok{==}\StringTok{\textquotesingle{}VC\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}len\textquotesingle{}}\NormalTok{], }\AttributeTok{paired =}\NormalTok{ T)}\SpecialCharTok{$}\NormalTok{ a}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "two.sided"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Grouping data by dosage}
+\NormalTok{dose\_0}\FloatTok{.5}\NormalTok{v1}\OtherTok{\textless{}{-}}
+\NormalTok{df}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{group\_by}\NormalTok{(dose)}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{mutate}\NormalTok{(}\AttributeTok{dose=}\NormalTok{dose, }\AttributeTok{supp =}\NormalTok{ supp, }\AttributeTok{len =}\NormalTok{ len)}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{filter}\NormalTok{(dose }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(.}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+\NormalTok{dose\_0}\FloatTok{.5}\NormalTok{v2}\OtherTok{\textless{}{-}}
+\NormalTok{df}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{group\_by}\NormalTok{(dose)}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{mutate}\NormalTok{(}\AttributeTok{dose=}\NormalTok{dose, }\AttributeTok{supp =}\NormalTok{ supp, }\AttributeTok{len =}\NormalTok{ len)}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{filter}\NormalTok{(dose }\SpecialCharTok{!=} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{dose\_1v2}\OtherTok{\textless{}{-}}
+\NormalTok{df}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{group\_by}\NormalTok{(dose)}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{mutate}\NormalTok{(}\AttributeTok{dose=}\NormalTok{dose, }\AttributeTok{supp =}\NormalTok{ supp, }\AttributeTok{len =}\NormalTok{ len)}\SpecialCharTok{\%\textgreater{}\%}
+ \FunctionTok{filter}\NormalTok{(dose }\SpecialCharTok{\textgreater{}}\NormalTok{ .}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Hypothesis test Ha: B!=0}
+\CommentTok{\# Paired test by dosage}
+\NormalTok{data\_test}\OtherTok{\textless{}{-}} 
+\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{statistics=}\FunctionTok{c}\NormalTok{(}\FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_0}\FloatTok{.5}\NormalTok{v1, }\AttributeTok{paired =}\NormalTok{ F)}\SpecialCharTok{$}\NormalTok{statistic,}
+           \FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_0}\FloatTok{.5}\NormalTok{v2, }\AttributeTok{paired =}\NormalTok{ F)}\SpecialCharTok{$}\NormalTok{statistic,}
+           \FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_1v2, }\AttributeTok{paired =}\NormalTok{ F)}\SpecialCharTok{$}\NormalTok{statistic), }
+\AttributeTok{p.value =} \FunctionTok{c}\NormalTok{(}\FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_0}\FloatTok{.5}\NormalTok{v1, }\AttributeTok{paired =}\NormalTok{ F)}\SpecialCharTok{$}\NormalTok{p.value,}
+           \FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_0}\FloatTok{.5}\NormalTok{v2, }\AttributeTok{paired =}\NormalTok{ F)}\SpecialCharTok{$}\NormalTok{p.value,}
+           \FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_1v2, }\AttributeTok{paired =}\NormalTok{ F)}\SpecialCharTok{$}\NormalTok{p.value), }
+           \AttributeTok{row.names =} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}0.5v1\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}0.5v2\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}1v2\textquotesingle{}}\NormalTok{))}
+\NormalTok{data\_test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       statistics      p.value
+## 0.5v1  -6.476648 1.268301e-07
+## 0.5v2 -11.799046 4.397525e-14
+## 1v2    -4.900484 1.906430e-05
+\end{verbatim}
+
+Therefore, the type of supplement is used in treatment appeared to be
+significant and level of efficiency is tooth growth on 3.7 cm more then
+on vitamin C using.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#paired T{-}confidence intervals}
+\FunctionTok{round}\NormalTok{(}\FunctionTok{t.test}\NormalTok{(df[df[[}\StringTok{\textquotesingle{}supp\textquotesingle{}}\NormalTok{]]}\SpecialCharTok{==}\StringTok{\textquotesingle{}OJ\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}len\textquotesingle{}}\NormalTok{], df[df[[}\StringTok{\textquotesingle{}supp\textquotesingle{}}\NormalTok{]]}\SpecialCharTok{==}\StringTok{\textquotesingle{}VC\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}len\textquotesingle{}}\NormalTok{], paired }
+             \OtherTok{=} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{conf.level =}\NormalTok{ .}\DecValTok{95}\NormalTok{, }\AttributeTok{var.equal =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{$}\NormalTok{conf, }\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.16701  7.56701
+## attr(,"conf.level")
+## [1] 0.95
+\end{verbatim}
+
+\section{Summary}\label{summary}
+
+\begin{itemize}
+\tightlist
+\item
+  using other viitamins (A, D, E, alpha tocopherol) the tooth growth in
+  guinea pigs were more significant then under solely supplemeting
+  vitamin C.
+\item
+  The mean difference in about 3.7 cm.
+\item
+  the standard deviation in observation is lower under more diet on
+  -1.6605
+\end{itemize}
+
+\section{References}\label{references}
+
+\begin{itemize}
+\tightlist
+\item
+  Crampton, E. W. (1947). The growth of the odontoblast of the incisor
+  teeth as a criterion of vitamin C intake of the guinea pig. The
+  Journal of Nutrition, 33(5), 491--504. \url{doi:10.1093/jn/33.5.491}.
+\end{itemize}
+
+\section{Appendix}\label{appendix}
+
+\subsection{B}\label{b}
+
+\subsubsection{B.1 Descriptives}\label{b.1-descriptives}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df}\OtherTok{\textless{}{-}}\NormalTok{ToothGrowth}
+\NormalTok{mean\_vc}\OtherTok{\textless{}{-}}
+\NormalTok{    df}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(supp)}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(supp }\SpecialCharTok{==} \StringTok{\textquotesingle{}VC\textquotesingle{}}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{mean\_len =} \FunctionTok{mean}\NormalTok{(len), }\AttributeTok{mean\_dose =} \FunctionTok{mean}\NormalTok{(dose))}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(len, dose))}
+
+\NormalTok{sd\_vc}\OtherTok{\textless{}{-}}
+\NormalTok{    df}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(supp)}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(supp }\SpecialCharTok{==} \StringTok{\textquotesingle{}VC\textquotesingle{}}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{sd\_len =} \FunctionTok{sd}\NormalTok{(len), }\AttributeTok{sd\_dose =} \FunctionTok{sd}\NormalTok{(dose))}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(len,dose))}
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}mean: \textquotesingle{}}\NormalTok{,}\FunctionTok{as.numeric}\NormalTok{(mean\_vc[}\DecValTok{1}\NormalTok{,]), }\StringTok{\textquotesingle{}sd:\textquotesingle{}}\NormalTok{, }\FunctionTok{as.numeric}\NormalTok{(sd\_vc[}\DecValTok{1}\NormalTok{,]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## mean:  2 16.96333 1.166667 sd: 2 8.266029 0.6342703
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean\_oj}\OtherTok{\textless{}{-}}
+\NormalTok{    df}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(supp)}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(supp }\SpecialCharTok{!=} \StringTok{\textquotesingle{}VC\textquotesingle{}}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{mean\_len =} \FunctionTok{mean}\NormalTok{(len), }\AttributeTok{mean\_dose =} \FunctionTok{mean}\NormalTok{(dose))}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(len,dose))}
+
+\NormalTok{sd\_oj}\OtherTok{\textless{}{-}}
+\NormalTok{    df}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{group\_by}\NormalTok{(supp)}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{filter}\NormalTok{(supp }\SpecialCharTok{!=} \StringTok{\textquotesingle{}VC\textquotesingle{}}\NormalTok{)}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{mutate}\NormalTok{(}\AttributeTok{sd\_len =} \FunctionTok{sd}\NormalTok{(len), }\AttributeTok{sd\_dose =} \FunctionTok{sd}\NormalTok{(dose))}\SpecialCharTok{\%\textgreater{}\%}
+    \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(len,dose))}
+\FunctionTok{cat}\NormalTok{(}\StringTok{\textquotesingle{}mean:\textquotesingle{}}\NormalTok{, }\FunctionTok{as.numeric}\NormalTok{(mean\_oj[}\DecValTok{1}\NormalTok{,]), }\StringTok{\textquotesingle{}sd: \textquotesingle{}}\NormalTok{,  }\FunctionTok{as.numeric}\NormalTok{(sd\_oj[}\DecValTok{1}\NormalTok{,]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## mean: 1 20.66333 1.166667 sd:  1 6.605561 0.6342703
+\end{verbatim}
+
+\subsubsection{B.2 Hypothesis test}\label{b.2-hypothesis-test}
+
+\(H_a: B!=0\) \#\#\#\#\# Paired test by dosage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_0}\FloatTok{.5}\NormalTok{v1, }\AttributeTok{paired =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -6.4766, df = 37.986, p-value = 1.268e-07
+## alternative hypothesis: true difference in means between group 0.5 and group 1 is not equal to 0
+## 95 percent confidence interval:
+##  -11.983781  -6.276219
+## sample estimates:
+## mean in group 0.5   mean in group 1 
+##            10.605            19.735
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_0}\FloatTok{.5}\NormalTok{v2, }\AttributeTok{paired =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -11.799, df = 36.883, p-value = 4.398e-14
+## alternative hypothesis: true difference in means between group 0.5 and group 2 is not equal to 0
+## 95 percent confidence interval:
+##  -18.15617 -12.83383
+## sample estimates:
+## mean in group 0.5   mean in group 2 
+##            10.605            26.100
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(len}\SpecialCharTok{\textasciitilde{}}\NormalTok{dose, dose\_1v2, }\AttributeTok{paired =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  len by dose
+## t = -4.9005, df = 37.101, p-value = 1.906e-05
+## alternative hypothesis: true difference in means between group 1 and group 2 is not equal to 0
+## 95 percent confidence interval:
+##  -8.996481 -3.733519
+## sample estimates:
+## mean in group 1 mean in group 2 
+##          19.735          26.100
+\end{verbatim}
+
+\end{document}
